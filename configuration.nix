@@ -14,7 +14,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.kernelModules = [ "snd_usb_audio" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -53,7 +55,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
-    variant = "";
+    variant = "workman";
   };
 
   # Enable CUPS to print documents.
@@ -101,12 +103,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  git vim wget direnv brave zoom-us yt-dlp htop btop google-chrome zellij element-desktop nix-output-monitor 
+  git vim wget direnv zoom-us yt-dlp htop btop zellij element-desktop nix-output-monitor 
   marksman  moreutils vscode ripgrep ranger obs-studio cabal-install lsd npins haskell-language-server
   dhall-lsp-server nls nil rust-analyzer unzip libsForQt5.polonium 
   ghc hpack nix-tree lf shellcheck jq cmatrix nerdfonts vlc cowsay fortune asciiquarium
   slides eza bat dust fd procs tealdeer zoxide tokei hexo-cli 
-  alacritty figlet hugo  
+  alacritty figlet hugo easyeffects pavucontrol alsa-scarlett-gui
   ];
   
   # Some programs need SUID wrappers, can be configured further or are

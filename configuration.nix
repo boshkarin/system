@@ -103,12 +103,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  git vim wget direnv zoom-us yt-dlp htop btop zellij element-desktop nix-output-monitor 
-  marksman  moreutils vscode ripgrep ranger obs-studio cabal-install lsd npins haskell-language-server
-  dhall-lsp-server nls nil rust-analyzer unzip libsForQt5.polonium 
-  ghc hpack nix-tree lf shellcheck jq cmatrix nerdfonts vlc cowsay fortune asciiquarium
-  slides eza bat dust fd procs tealdeer zoxide tokei hexo-cli 
-  alacritty figlet hugo easyeffects pavucontrol alsa-scarlett-gui
+  alacritty alsa-scarlett-gui asciiquarium bat btop cabal-install cmatrix cowsay
+  dhall-lsp-server direnv dust easyeffects element-desktop eza figlet fortune
+  fd ghc git hexo-cli htop hugo haskell-language-server jq lf lolcat lsd marksman
+  moreutils nerdfonts nil npins nix-output-monitor nix-tree obs-studio pavucontrol
+  procs ranger ripgrep rust-analyzer shellcheck slides tealdeer tokei unzip vlc
+  vscode wget yt-dlp zellij zoxide
+
   ];
   
   # Some programs need SUID wrappers, can be configured further or are

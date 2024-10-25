@@ -14,9 +14,10 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [ "snd_usb_audio" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
+
+  hardware.uinput.enable = true;
+ 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -48,21 +49,45 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
-    variant = "workman";
+    variant = "";
+    options = "caps:swapescape";
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Kanata key remapping
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      "asus-laptop".config = ''
+      (defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \
+  caps a    s    h    t    g    y    n    e    o    i    '    ret
+  lsft z    x    m    c    v    k    l    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer workman
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \
+  esc  a    s    h    t    g    y    n    e    o    i    '    ret
+  lsft z    x    m    c    v    k    l    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+  '';
+    };
+  };
+  
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -84,34 +109,37 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.stablejoy = {
     isNormalUser = true;
-    description = "stablejoy";
-    extraGroups = [ "networkmanager" "wheel" ];
+    description = "stable joy";
+    extraGroups = [ "networkmanager" "wheel" "uinput"];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      firefox
-      kate
     #  thunderbird
     ];
   };
 
+  # Install firefox.
+  programs.firefox.enable = true;
+  
+  # Enable dconf
+  programs.dconf.enable = true;
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  alacritty alsa-scarlett-gui asciiquarium bat btop cabal-install cmatrix cowsay
-  dhall-lsp-server direnv dust easyeffects element-desktop eza figlet fortune
-  fd ghc git hexo-cli htop hugo haskell-language-server jq lf lolcat lsd marksman
-  moreutils nerdfonts nil npins nix-output-monitor nix-tree obs-studio pavucontrol
-  procs ranger ripgrep rust-analyzer shellcheck slides tealdeer tokei unzip vlc
-  vscode wget yt-dlp zellij zoxide
-
+  alsa-scarlett-gui asciiquarium audacity bat btop cabal-install cmatrix cowsay
+  dhall-lsp-server direnv dust element-desktop eza figlet fortune
+  fd ghc git gnome-tweaks gpaste htop haskell-language-server jq kanata lf lolcat lsd marksman
+  moreutils nerdfonts nil nixd npins nix-output-monitor nix-tree obs-studio
+  procs ranger ripgrep rust-analyzer scrcpy shellcheck slides tealdeer tokei unzip vlc
+  vscode wget yt-dlp zellij zoom-us zoxide
   ];
-  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -143,26 +171,6 @@
 
   programs.direnv.enable = true;
   
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    defaultEditor = false;
-    plugins = with pkgs.vimPlugins; [
-      nvim-lspconfig
-      nvim-treesitter.withAllGrammars
-      lightline-vim
-      fzf-vim
-    ];
-    extraConfig = ''
-      set shiftwidth=2
-      set tabstop=2
-      set expandtab
-      set relativenumber
-      '';
-  };
-
   programs.helix = {
     enable = true;
     extraPackages = with pkgs; [
@@ -170,7 +178,7 @@
     ];
     defaultEditor = true;
     settings = {
-      theme = "kanagawa";
+      theme = "autumn";
       editor = {
         true-color = true;
         mouse = false;
@@ -184,10 +192,13 @@
         };
       };     
     };
+    
     languages = {
-      language = [{
-        name = "nix";
-      }];  
+      "nix" = {
+        language-servers = {
+          command = "${pkgs.nixd}/bin/nixd";
+        };
+      };
     };
   };
   
@@ -197,7 +208,7 @@
     userEmail = "dooygoy@gmail.com";
   };
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
   };
     
   programs.zsh = {
@@ -226,6 +237,6 @@
    ];
   };
 
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
 }

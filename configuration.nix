@@ -168,7 +168,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 
-  home-manager.users.stablejoy = { pkgs, ... }: {
+  home-manager.users.domagoj = { pkgs, ... }: {
     home.packages = with pkgs; [ ];
 
   programs.direnv.enable = true;

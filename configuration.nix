@@ -18,7 +18,7 @@
 
   hardware.uinput.enable = true;
  
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nista"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -57,7 +57,7 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "";
-    options = "caps:swapescape";
+    options = "";
   };
 
   # Enable CUPS to print documents.
@@ -107,9 +107,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.stablejoy = {
+  users.users.domagoj = {
     isNormalUser = true;
-    description = "stable joy";
+    description = "Domagoj Miskovic";
     extraGroups = [ "networkmanager" "wheel" "uinput"];
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -132,12 +132,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  alsa-scarlett-gui asciiquarium audacity bat btop cabal-install cmatrix cowsay
-  dhall-lsp-server direnv dust element-desktop eza figlet fortune
-  fd ghc git gnome-tweaks gpaste htop haskell-language-server jq kanata lf lolcat lsd marksman
+  alsa-scarlett-gui asciiquarium audacity bat btop tmatrix cowsay
+  direnv dust element-desktop eza figlet fortune
+  fd git gnome-tweaks gpaste htop jq kanata lf lolcat lsd marksman
   moreutils nerdfonts nil nixd npins nix-output-monitor nix-tree obs-studio
   procs ranger ripgrep rust-analyzer scrcpy shellcheck slides tealdeer tokei unzip vlc
-  vscode wget yt-dlp zellij zoom-us zoxide
+  wget yt-dlp zellij tmux zoom-us zoxide gnomeExtensions.user-themes
+  zuki-themes stilo-themes gnome-themes-extra vimix-gtk-themes kitty kitty-themes
+  gnomeExtensions.blur-my-shell
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

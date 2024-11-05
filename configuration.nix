@@ -207,7 +207,7 @@
   programs.git = {
     enable = true;
     userName = "stablejoy";
-    userEmail = "dooygoy@gmail.com";
+    userEmail = "stablejoy@mailfence.com";
   };
 
   home.stateVersion = "24.05";

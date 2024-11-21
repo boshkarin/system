@@ -133,13 +133,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   alsa-scarlett-gui asciiquarium audacity bat btop tmatrix cowsay
-  direnv dust element-desktop eza figlet fortune
+  direnv dunst element-desktop eza figlet fortune
   fd git gnome-tweaks gpaste htop jq kanata lf lolcat lsd marksman
   moreutils nerdfonts nil nixd npins nix-output-monitor nix-tree obs-studio
-  procs ranger ripgrep rust-analyzer scrcpy shellcheck slides tealdeer tokei unzip vlc
-  wget yt-dlp zellij tmux zoom-us zoxide gnomeExtensions.user-themes
-  zuki-themes stilo-themes gnome-themes-extra vimix-gtk-themes kitty kitty-themes
-  gnomeExtensions.blur-my-shell
+  procs ranger ripgrep rustup opam neovim scrcpy shellcheck slides tealdeer tokei unzip vlc
+  wget yt-dlp zellij tmux zoom-us zoxide kitty kitty-themes pa-applet 
+  i3 i3status i3blocks feh 
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -206,8 +205,8 @@
   
   programs.git = {
     enable = true;
-    userName = "stablejoy";
-    userEmail = "stablejoy@mailfence.com";
+    userName = "domagojding";
+    userEmail = "domagojding@gmail.com";
   };
 
   home.stateVersion = "24.05";

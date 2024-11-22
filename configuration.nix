@@ -137,7 +137,7 @@
   fd git gnome-tweaks gpaste htop jq kanata lf lolcat lsd marksman
   moreutils nerdfonts nil nixd npins nix-output-monitor nix-tree obs-studio
   procs ranger ripgrep rustup opam neovim scrcpy shellcheck slides tealdeer tokei unzip vlc
-  wget yt-dlp zellij tmux zoom-us zoxide kitty kitty-themes pa-applet 
+  wget yt-dlp zellij tmux zoom-us zoxide kitty kitty-themes pa_applet 
   i3 i3status i3blocks feh 
   ];
 

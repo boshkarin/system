@@ -132,13 +132,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  alsa-scarlett-gui asciiquarium audacity bat btop tmatrix cowsay
-  direnv dunst element-desktop eza figlet fortune
-  fd git gnome-tweaks gpaste htop jq kanata lf lolcat lsd marksman
-  moreutils nerdfonts nil nixd npins nix-output-monitor nix-tree obs-studio
-  procs ranger ripgrep rustup opam neovim scrcpy shellcheck slides tealdeer tokei unzip vlc
-  wget yt-dlp zellij tmux zoom-us zoxide kitty kitty-themes pa_applet 
-  i3 i3status i3blocks feh 
+  alsa-scarlett-gui asciiquarium audacity bat btop clang-tools cowsay direnv dunst 
+  element-desktop eza fd feh figlet fortune git gnome-tweaks gnumake gpaste 
+  htop i3 i3blocks i3status jq kanata kitty kitty-themes lf lolcat lsd marksman 
+  moreutils nerdfonts neovim nil nix-output-monitor nix-tree nixd npins 
+  obs-studio opam pa_applet procs ranger ripgrep rustup scrcpy shellcheck 
+  slides tealdeer tmatrix tmux tokei unzip vlc wget yt-dlp zellij zoom-us zoxide
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -179,7 +179,7 @@
     ];
     defaultEditor = true;
     settings = {
-      theme = "autumn";
+      theme = "autumn_night";
       editor = {
         true-color = true;
         mouse = false;

@@ -18,7 +18,7 @@
 
   hardware.uinput.enable = true;
  
-  networking.hostName = "nista"; # Define your hostname.
+  networking.hostName = "lambda"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -107,7 +107,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.domagoj = {
+  users.users.dmisk = {
     isNormalUser = true;
     description = "Domagoj Miskovic";
     extraGroups = [ "networkmanager" "wheel" "uinput"];
@@ -133,11 +133,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   alsa-scarlett-gui asciiquarium audacity bat btop clang-tools cowsay direnv dunst 
-  element-desktop eza fd feh figlet fortune git gnome-tweaks gnumake gpaste 
+  element-desktop emacs eza fd feh figlet fortune gcc git gnome-tweaks gnumake gpaste 
   htop i3 i3blocks i3status jq kanata kitty kitty-themes lf lolcat lsd marksman 
   moreutils nerdfonts neovim nil nix-output-monitor nix-tree nixd npins 
-  obs-studio opam pa_applet procs ranger ripgrep rustup scrcpy shellcheck 
+  obs-studio opam pa_applet procs ranger ripgrep rlwrap rustup scrcpy shellcheck 
   slides tealdeer tmatrix tmux tokei unzip vlc wget yt-dlp zellij zoom-us zoxide
+  bashInteractive ghc cabal-install haskell-language-server haskellPackages.hlint
 
   ];
 
@@ -167,7 +168,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 
-  home-manager.users.domagoj = { pkgs, ... }: {
+  home-manager.users.dmisk = { pkgs, ... }: {
     home.packages = with pkgs; [ ];
 
   programs.direnv.enable = true;

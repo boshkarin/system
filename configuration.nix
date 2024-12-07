@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+                                                                           # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -62,6 +62,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  services.emacs.enable = true;
 
   # Kanata key remapping
   services.kanata = {
@@ -132,14 +134,22 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  alsa-scarlett-gui asciiquarium audacity bat btop clang-tools cowsay direnv dunst 
-  element-desktop emacs eza fd feh figlet fortune gcc git gnome-tweaks gnumake gpaste 
-  htop i3 i3blocks i3status jq kanata kitty kitty-themes lf lolcat lsd marksman 
-  moreutils nerdfonts neovim nil nix-output-monitor nix-tree nixd npins 
+  alsa-scarlett-gui asciiquarium audacity bat btop clang clang-tools coreutils cowsay 
+  direnv dunst element-desktop emacs eza fd feh figlet fortune gcc git gnome-tweaks 
+  gnumake gpaste htop i3 i3blocks i3status jq kanata kitty kitty-themes lf lolcat lsd 
+  marksman moreutils nerd-fonts.iosevka neovim nil nix-output-monitor nix-tree nixd npins 
   obs-studio opam pa_applet procs ranger ripgrep rlwrap rustup scrcpy shellcheck 
   slides tealdeer tmatrix tmux tokei unzip vlc wget yt-dlp zellij zoom-us zoxide
   bashInteractive ghc cabal-install haskell-language-server haskellPackages.hlint
-
+  millet smlnj mlkit vscode gimp
+  manim nerdfetch
+  nerd-fonts.hasklug
+  nerd-fonts.symbols-only
+  nerd-fonts.iosevka-term
+  ghcid
+  haskellPackages.LambdaCalculator
+  jdk miranda
+  
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -222,22 +232,21 @@
     promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
   };
 
-  fonts = {
-    fontDir.enable = true;
-    enableGhostscriptFonts = true;
-    packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "Iosevka"
-          "FiraMono"
-          "FantasqueSansMono"
-          "NerdFontsSymbolsOnly"
-        ];
-     })
-     roboto
-     roboto-mono
-   ];
-  };
+fonts = {
+  fontDir.enable = true;
+  enableGhostscriptFonts = true;
+  packages = with pkgs.nerd-fonts; [
+    hasklug
+    fantasque-sans-mono
+    zed-mono
+    _3270
+    bigblue-terminal
+    comic-shanns-mono
+    iosevka-term
+    iosevka
+    symbols-only
+  ];
+};
 
   system.stateVersion = "24.05"; # Did you read the comment?
 

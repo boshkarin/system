@@ -50,12 +50,12 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
-   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the KDE Plasma Desktop Environment.
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -113,7 +113,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.dmisk = {
+  users.users.dmiskovic = {
     isNormalUser = true;
     description = "Domagoj Miskovic";
     extraGroups = [ "networkmanager" "wheel" "uinput"];
@@ -182,7 +182,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 
-  home-manager.users.dmisk = { pkgs, ... }: {
+  home-manager.users.dmiskovic = { pkgs, ... }: {
     home.packages = with pkgs; [ ];
 
   programs.direnv.enable = true;
@@ -224,7 +224,7 @@
     userEmail = "domagojding@gmail.com";
   };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   };
     
   programs.zsh = {
@@ -242,6 +242,7 @@ fonts = {
   packages = with pkgs.nerd-fonts; [
     hasklug
     fantasque-sans-mono
+    fira-code
     zed-mono
     _3270
     bigblue-terminal
@@ -252,6 +253,6 @@ fonts = {
   ];
 };
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }

@@ -256,32 +256,6 @@ fonts = {
 
   home.stateVersion = "24.11";
   };
-    
-  programs.zsh = {
-    enable = true;
-    histSize = 100000;
-    syntaxHighlighting.enable = true;
-    autosuggestions.enable = true; 
-    enableBashCompletion = true;
-    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-  };
-
-fonts = {
-  fontDir.enable = true;
-  enableGhostscriptFonts = true;
-  packages = with pkgs.nerd-fonts; [
-    hasklug
-    fantasque-sans-mono
-    fira-code
-    zed-mono
-    _3270
-    bigblue-terminal
-    comic-shanns-mono
-    iosevka-term
-    iosevka
-    symbols-only
-  ];
-};
 
   system.stateVersion = "24.11"; # Did you read the comment?
 

@@ -1,8 +1,8 @@
-                                                                           # Edit this configuration file to define what should be installed on
+# Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -25,6 +25,9 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  services.guix.enable = true;
+
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -45,6 +48,7 @@
     LC_TELEPHONE = "hr_HR.UTF-8";
     LC_TIME = "hr_HR.UTF-8";
   };
+
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -69,6 +73,7 @@
 
   services.emacs.enable = true;
 
+
   # Kanata key remapping
   services.kanata = {
     enable = true;
@@ -85,9 +90,9 @@
 (deflayer workman
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \
-  esc  a    s    h    t    g    y    n    e    o    i    '    ret
+  bspc  a    s    h    t    g    y    n    e    o    i    '    ret
   lsft z    x    m    c    v    k    l    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+  esc lmet lalt           spc            ralt rmet rctl
 )
   '';
     };
@@ -119,7 +124,7 @@
     extraGroups = [ "networkmanager" "wheel" "uinput"];
     shell = pkgs.zsh;
     packages = with pkgs; [
-    #  thunderbird
+    thunderbird
     ];
   };
 
@@ -139,9 +144,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   alsa-scarlett-gui asciiquarium audacity bat btop clang clang-tools coreutils cowsay 
-  direnv dunst element-desktop emacs eza fd feh figlet fortune gcc git gnome-tweaks 
+  direnv dunst element-desktop emacs eza fd feh figlet fortune fzf gcc git gnome-tweaks 
   gnumake gpaste htop i3 i3blocks i3status jq kanata kitty kitty-themes lf lolcat lsd 
-  marksman moreutils nerd-fonts.iosevka neovim nil nix-output-monitor nix-tree nixd npins 
+  marksman moreutils nerd-fonts.iosevka nil nix-output-monitor nix-tree nixd npins 
   obs-studio opam pa_applet procs ranger ripgrep rlwrap rustup scrcpy shellcheck 
   slides tealdeer tmatrix tmux tokei unzip vlc wget yt-dlp zellij zoom-us zoxide
   bashInteractive ghc cabal-install haskell-language-server haskellPackages.hlint
@@ -153,38 +158,13 @@
   ghcid
   haskellPackages.LambdaCalculator
   jdk miranda
-  
+  nyxt qutebrowser
+  nickel nil
+  qemu
+  virt-manager tree xclip
+  lua-language-server
+  neovim
   ];
-
-  programs.zsh = {
-  enable = true;
-  histSize = 100000;
-  syntaxHighlighting.enable = true;
-  autosuggestions.enable = true;
-  enableBashCompletion = true;
-  promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-  interactiveShellInit = ''
-    source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-  '';
-};
-
-
-fonts = {
-  fontDir.enable = true;
-  enableGhostscriptFonts = true;
-  packages = with pkgs.nerd-fonts; [
-    hasklug
-    fantasque-sans-mono
-    fira-code
-    zed-mono
-    _3270
-    bigblue-terminal
-    comic-shanns-mono
-    iosevka-term
-    iosevka
-    symbols-only
-  ];
-};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -224,7 +204,7 @@ fonts = {
     ];
     defaultEditor = true;
     settings = {
-      theme = "autumn_night";
+      theme = "gruvbox_dark_hard";
       editor = {
         true-color = true;
         mouse = false;
@@ -245,6 +225,11 @@ fonts = {
           command = "${pkgs.nixd}/bin/nixd";
         };
       };
+      "nickel" = {
+        language-servers = {
+          command = "${pkgs.nls}/bin/nls";
+        };
+      };
     };
   };
   
@@ -255,7 +240,35 @@ fonts = {
   };
 
   home.stateVersion = "24.11";
+};
+    
+
+
+  programs.zsh = {
+    enable = true;
+    histSize = 100000;
+    syntaxHighlighting.enable = true;
+    autosuggestions.enable = true; 
+    enableBashCompletion = true;
+    promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
   };
+
+fonts = {
+  fontDir.enable = true;
+  enableGhostscriptFonts = true;
+  packages = with pkgs.nerd-fonts; [
+    hasklug
+    fantasque-sans-mono
+    fira-code
+    zed-mono
+    _3270
+    bigblue-terminal
+    comic-shanns-mono
+    iosevka-term
+    iosevka
+    symbols-only
+  ];
+};
 
   system.stateVersion = "24.11"; # Did you read the comment?
 
